@@ -12,6 +12,8 @@
 >+ array: 一种特殊的对象，有下标，有序
 ### 二、判断
 >+ typeof( 返回字符串类型 )
+>>+ 可以判断 udefined 数值 字符串 布尔值 funtion
+>>+ 不能判断: null与object  object与array
 >+ instanceof( 判断对象的具体类型 )
 >+ ===( 可以用来判断undefined, null )
 #### 基本类型
@@ -46,9 +48,12 @@ var b1 = {
 console.log(b1 instanceof Object, b1 instanceof Array) // true false;
 console.log(b1.b2 instanceof Object, b1.b2 instanceof Array) // true true;
 console.log(b1.b3 instanceof Object, b1.b3 instanceof Function) // true true;
+
 console.log(typeof b1.b3 === "function") // true;
 console.log(typeof b1.b2[2] === 'function') // true
 b1.b2[2](4)
 console.log(b1.b3()())
+
+console.log(typeof b1.b2) // object
 
 ```

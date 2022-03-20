@@ -98,7 +98,7 @@ console.log(b)  // undefined
 + 下面代码输出什么？（c is not a function）
 >+ 先执行变量提升，后执行函数提升，然后变量赋值
 ```javascript
-var c =1
+var c = 1
 function c(c) {
     console.log(c)
 }

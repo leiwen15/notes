@@ -138,3 +138,165 @@ f = null // 闭包死亡，因为包含闭包的函数对象成为垃圾对象
 >+ 将所有的数据和功能都封装到一个函数内部（私有的）
 >+ 只向外暴露一个包含 n 个方法的对象或函数
 >+ 模块的使用者，只需要通过模块暴露的对象调用方法，来实现对应的功能
+```javascript
+function myModule() {
+    // msg 是私有数据，外部看不到
+    var msg = 'hello, world'
+    function doSomething() {
+        console.log('doSomething() ' + msg.toUpperCase())
+    }
+    function doOtherthing() {
+        console.log('doOtherthing() ' + msg.toLowerCaes())
+    }
+    // 向外暴露对象（给外部使用的方法）
+    return {
+        doSomething: doSomething,
+        doOtherthing: doOtherthing
+    }
+}
+var module = myModule()
+module.doSomething()
+module.doOtherthing()
+```
+```javascript
+// 这种方法使用起来更加方便
+(function myModule() {
+    // msg 是私有数据，外部看不到
+    var msg = 'hello, world'
+    function doSomething() {
+        console.log('doSomething() ' + msg.toUpperCase())
+    }
+    function doOtherthing() {
+        console.log('doOtherthing() ' + msg.toLowerCaes())
+    }
+    
+    window.myModule2 = {
+        doSomething: doSomething,
+        doOtherthing: doOtherthing
+    }
+})()
+// 可以直接调用
+myModule2.doSomething()
+myModule2.doOtherthing()
+```
+```javascript
+// 这么写也可以
+(function myModule(window) {
+    // msg 是私有数据，外部看不到
+    var msg = 'hello, world'
+    function doSomething() {
+        console.log('doSomething() ' + msg.toUpperCase())
+    }
+    function doOtherthing() {
+        console.log('doOtherthing() ' + msg.toLowerCaes())
+    }
+    
+    window.myModule2 = {
+        doSomething: doSomething,
+        doOtherthing: doOtherthing
+    }
+})(window)
+// 可以直接调用
+myModule2.doSomething()
+myModule2.doOtherthing()
+```
+## 闭包的缺点
++ 缺点
+>+ 函数执行完后，函数的局部变量没有释放，占用内存时间会变长
+>+ 容易造成内存泄露
++ 解决
+>+ 能不用就不用
+>+ 及时释放
+```javascript
+// 这么写也可以
+function fn1() {
+    var arr = new Array[1000000]
+    function fn2() {
+        console.log(arr.length)
+    }
+    return fn2
+}
+var f = fn1()
+f()
+f = null  // 让内部函数成为垃圾对象，进而回收闭包
+```
+## 内存溢出和内存泄露
++ 内存溢出
+>+ 一种程序运行时出现的错误
+>+ 当程序运行需要的内存超过了剩余的内存时，就会抛出内存溢出的错误
++ 内存泄漏
+>+ 占用的内存没有及时释放
+>+ 内存泄露累积多了，容易导致内存溢出
+>+ 常见的内存泄露：
+>>+ 意外的全局变量
+>>+ 没有及时清理的计时器或回调函数
+>>+ 闭包
+```javascript
+var obj = {}
+for(var i = 0; i < 1000; i++) {
+    obj[i] = new Array(10000000)
+}
+```
+```javascript
+function fn() {
+    // 意外的全局变量
+    a = 3
+    console.log(a)
+}
+fn()
+```
+```javascript
+// 忘记关闭的定时器
+setInterval(function(){
+    console.log('========')
+}, 1000)
+```
+```javascript
+// 应该记得关闭
+var intervalId = setInterval(function(){
+    console.log('========')
+}, 1000)
+
+clearInterval(intervalId)
+```
+```javascript
+// 这么写也可以
+function fn1() {
+    var arr = new Array[1000000]
+    function fn2() {
+        console.log(arr.length)
+    }
+    return fn2
+}
+var f = fn1()
+f()
+// 如果没有 f = null，则不会释放，可能会导致内存泄露
+```
+## 面试题
+```javascript
+// 题一
+var name = 'window'
+var object = {
+    name: 'my object',
+    getNameFunc: function() {
+        return function(){
+            return this.name
+        }
+    }
+}
+alert(object.getNameFunc()())  // window
+```
+```javascript
+// 题二
+var name2 = 'window'
+var object = {
+    name2: 'my object',
+    getNameFunc: function() {
+        var that = this
+        return function(){            
+            return that.name2
+        }
+    }
+}
+alert(object.getNameFunc()())  // my object
+```

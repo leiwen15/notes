@@ -279,8 +279,8 @@ var name = 'window'
 var object = {
     name: 'my object',
     getNameFunc: function() {
-        return function(){
-            return this.name
+        return function(){  // 不存在闭包
+            return this.name  // 虽然存在函数嵌套，但没有内部函数引用外部变量
         }
     }
 }
@@ -293,10 +293,29 @@ var object = {
     name2: 'my object',
     getNameFunc: function() {
         var that = this
-        return function(){            
+        return function(){  // 存在闭包            
             return that.name2
         }
     }
 }
 alert(object.getNameFunc()())  // my object
+```
+```javascript
+// 题三
+function fun(n, o) {
+    console.log(o)
+    return {
+        fun: function(m) {
+            return fun(m, n)
+        }
+    }
+}
+var a = fun(0)
+a.fun(1)
+a.fun(2)
+a.fun(3)
+var b = fun(0).fun(1).fun(2).fun(3)
+var c = fun(0).fun(1)
+c.fun(2)
+c.fun(3)
 ```

@@ -357,12 +357,12 @@ function fun(n, o) {
     },
   };
 }
-var a = fun(0);
-a.fun(1);
-a.fun(2);
-a.fun(3);
-var b = fun(0).fun(1).fun(2).fun(3);
+var a = fun(0); // 调用的外面的fun， n = 0， o = undefined
+a.fun(1); // 调用里面的 fun，输出0
+a.fun(2); // 有执行fun:function 这个函数， 这里面有个内部函数，产生了一个闭包，但马上被抛弃，因为没有被接住，所以使用的还是a里面的闭包，输出0
+a.fun(3); // undefined, 0, 0, 0
+var b = fun(0).fun(1).fun(2).fun(3); // undefined, 0, 1, 2
 var c = fun(0).fun(1);
 c.fun(2);
-c.fun(3);
+c.fun(3); // undefined, 0, 1, 1
 ```

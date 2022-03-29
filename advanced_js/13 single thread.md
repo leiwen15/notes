@@ -15,3 +15,33 @@
 >+ 绑定监听
 >+ 发送 ajax 请求
 + 后面会在某个时刻才会执行回调代码
+```javascript
+// 先执行初始化代码，再执行回调代码
+// alert 之前
+// alert 之后
+// timeout 0
+// timeout 111
+// timeout 555
+setTimeout(function(){
+    console.log("timeout 555")
+    alert("55555555")
+}, 5000)
+
+setTimeout(function(){
+    console.log("timeout 111")
+    alert("11111111")
+}, 1000)
+
+setTimeout(function(){
+    console.log("timeout 0")
+    alert("00000000")
+}, 0)
+
+function fn() {
+    console.log("fn()")
+}
+
+console.log("alert 之前")
+alert("dddd")  // 暂停当前主线程的执行，同时暂停计时，点击确定后，恢复程序执行和计时
+console.log("alert 之后")
+```

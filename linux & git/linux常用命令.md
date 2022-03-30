@@ -32,3 +32,8 @@
 >>+ xxx   ALL=(ALL)    NOPASSWD: ALL
 >+ xxx 用户组执行 sudo 命令时，不需要输入密码
 >>+ %xxx   ALL=(ALL)    NOPASSWD: ALL
++ ps:当redhat的版本小于5.6时，需要设置用户组才可以免密码
+>+ groupadd sudo
+>+ usermod -G sudo xxx
+## 五、在 linux 安装 conda
+https://www.jianshu.com/p/914edc1de634

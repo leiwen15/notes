@@ -36,4 +36,9 @@
 >+ groupadd sudo
 >+ usermod -G sudo xxx
 ## 五、在 linux 安装 conda
-https://www.jianshu.com/p/914edc1de634
++ https://www.jianshu.com/p/914edc1de634
+## 六、grep函数
++ 在文件中查找包含某数据的行
+>+ grep 251 malware.txt
++ 在文件中查找两个条件
+>+ grep 251 malware.txt | grep url

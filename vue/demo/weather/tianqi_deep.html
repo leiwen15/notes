@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click="changeWeather">切换天气</button>
+        <h3>a的值是{{numbers.a}}</h3>
+        <button @click="numbers.a++">点我，a加1</button>
+        <h3>b的值是{{numbers.b}}</h3>
+        <button @click="numbers.b++">点我，b加1</button>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            isHot: true,
+            numbers: {
+                a: 1,
+                b: 2
+            }
+        },
+        computed:{
+            info(){
+                return this.isHot?'炎热':'凉爽'
+            }
+        },
+        methods: {
+            changeWeather(){
+                this.isHot = !this.isHot
+            }
+        },
+        // 写在内部的watch
+        // 也可以写在外面
+        watch: {
+            // 其实应该是 'isHot'，isHot只是简写方式
+            isHot:{
+                // 当isHot发生改变时，handler会调用
+                handler(newValue, oldValue){
+                    console.log("isHot被修改了", newValue, oldValue)
+                }
+            },
+            // numbers.a的写法是错误的，需要加上引号
+            // 监视多级数据中的某项数据的变化
+            // 'numbers.a':{
+            //     handler(){
+            //         console.log('a发生改变了')
+            //     }
+            // }
+            // 监视多个数据
+            numbers:{
+                // 因为numbers是引用的，其地址并没有发生变化
+                // 所以这么写，是无法触发 handler 的
+                // handler(){                   
+                //     console.log('numbers改变了')
+                // }
+                // 正确的，应该用深度监视 deep
+                deep: true,
+                handler(){                   
+                    console.log('numbers改变了')
+                }
+            }
+        }
+    })
+    // 写在外面的监视属性
+    // vm.$watch('isHot', {
+    //     handler(newValue, oldValue){
+    //         console.log("isHot被修改了", newValue, oldValue)
+    //     }
+    // })
+</script>
+</html>

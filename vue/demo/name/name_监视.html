@@ -12,10 +12,6 @@
         姓：<input type="text" v-model="firstName"><br/><br/>
         名：<input type="text" v-model="lastName"><br/><br/>
         姓名：<span>{{ fullName }}</span>
-        姓名：<span>{{ fullName }}</span>
-        姓名：<span>{{ fullName }}</span>
-        姓名：<span>{{ fullName }}</span>
-        姓名：<span>{{ fullName }}</span>
         
     </div>
     <script type="text/javascript">
@@ -24,19 +20,18 @@
             el: '#root',
             data: {
                 firstName: '张',
-                lastName: '第三'
+                lastName: '第三',
+                fullName: '张-第三'
             },
             methods: {
                 test(){
                     console.log('hello')
                 }
             },
-            computed: {
-                fullName:{
-                    get(){
-                        console.log('@-----------get')
-                        return this.firstName + '-' + this.lastName
-                    }
+            watch: {
+                firstName(newValue, oldValue){
+                    this.fullName = newValue + '-'+ this.lastName
+                    console.log('kkkkk')
                 }
             }
         })

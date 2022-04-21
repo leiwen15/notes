@@ -11,7 +11,8 @@
     <div id="root">
         姓：<input type="text" v-model="firstName"><br/><br/>
         名：<input type="text" v-model="lastName"><br/><br/>
-        姓名：<span>{{ fullName() }}</span>
+        姓名：<span>{{ fullName }}</span>
+        
     </div>
     <script type="text/javascript">
         Vue.config.productionTip = false
@@ -22,11 +23,12 @@
                 lastName: '第三'
             },
             methods: {
+                test(){
+                    console.log('hello')
+                }
+            },
+            computed: {
                 fullName(){
-                    // 只要data中的数据一发生改变
-                    // 模板就会重新解析
-                    // 就多次调用 fullName 方法
-                    console.log("@--------")
                     return this.firstName + this.lastName
                 }
             }

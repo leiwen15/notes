@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        姓：<input type="text" v-model="firstName"><br/><br/>
+        名：<input type="text" v-model="lastName"><br/><br/>
+        姓名：<span>{{ fullName }}</span>
+        姓名：<span>{{ fullName }}</span>
+        姓名：<span>{{ fullName }}</span>
+        姓名：<span>{{ fullName }}</span>
+        姓名：<span>{{ fullName }}</span>
+        
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                firstName: '张',
+                lastName: '第三'
+            },
+            methods: {
+                test(){
+                    console.log('hello')
+                }
+            },
+            computed: {
+                fullName:{
+                    get(){
+                        // 上面虽然使用了5次fullName，但只调用了1次
+                        // 因为computed有缓存功能
+                        // get 什么时候发生调用？
+                        // 1.初次调用时；2.当依赖的数据发生变化时
+                        console.log('@-----------get')
+                        return this.firstName + '-' + this.lastName
+                    },
+                    set(value){
+                        // set 什么时候发生调用？
+                        // 当fullName被修改时
+                        console.log('@-----------set')
+                        const arr = value.split('-')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

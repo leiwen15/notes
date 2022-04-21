@@ -42,3 +42,12 @@
 >+ grep 251 malware.txt
 + 在文件中查找两个条件
 >+ grep 251 malware.txt | grep url
+## 七、压缩命令
+## 八、查看当前系统中进程状态
++ ps -aux
+>+ 查看当前系统中所有的进程信息
++ ps -ef | grep openvpn
+>+ 查看具体的某一进程
+## 九、openvpn 配置
++ 重启 openvpn
+>+ sudo openvpn --daemon --config /etc/openvpn/mobile.ovpn --log-append /var/log/openvpn.log

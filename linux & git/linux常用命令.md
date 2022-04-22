@@ -1,11 +1,15 @@
 # linux 常用命令
-## 一、测试两台linux机器之间的网速
+## 一、测试两台机器之间的网速
+### windows 和 linux 之间都可以
 + 两台机器都安装 iperf3
 >+ eg. 10.28.172.27 和 10.28.172.24
 >+ 安装方式：yum install -y iperf3
+>+ windows 安装方式：https://iperf.fr/iperf-download.php，并直接在安装地址中调用
 + 其中一台机器启动 iperf
 >+ 10.28.172.27
 >+ iperf3 -s
++ 如果是 windows 机器
+>+ iperf3.exe -s
 + 另外一台机器执行
 >+ 10.28.172.24
 >+ iperf3 -c 10.28.172.27 -d -t 60

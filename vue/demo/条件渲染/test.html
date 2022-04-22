@@ -24,6 +24,19 @@
         <div v-if="n===2">React</div>
         <!-- 也有v-else-if -->
         <!-- 也有v-else -->
+        <!-- 也有v-else，后面不需要加条件 -->
+        <!-- 这样写 会破坏结构，可以使用template来实现不破坏结构的写法 -->
+        <div v-if="1===1">
+            <h3>haha</h3>
+            <h3>hello</h3>
+            <h3>你好</h3>
+        </div>
+        <!-- 使用template写法，不会破坏结构，但是只能和 v-if 配合使用，不能和 v-show 一起使用 -->
+        <template v-if="1===1">
+            <h3>haha</h3>
+            <h3>hello</h3>
+            <h3>你好</h3>
+        </template>
 
     </div>
     <script type="text/javascript">

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- v-show 做条件渲染 的底层实现：调整display属性 -->
+        <h2 v-show="true">{{name}}</h2>
+        <!-- v-if 做条件渲染，直接删除 dom 节点 -->
+        <h2 v-if="1==1">{{name}}</h2>
+        <h2>当前的 n 的值是 {{n}}</h2>
+        <button @click="n++">点我 n+1</button>
+        <!-- v-show 做条件渲染 -->
+        <div v-show="n===1">Angular</div>
+        <div v-show="n===2">React</div>
+        <div v-show="n===3">Vue</div>
+        <!-- v-if 做条件渲染 -->
+        <div v-if="n===1">Angular</div>
+        <div v-if="n===2">React</div>
+        <!-- 也有v-else-if -->
+        <!-- 也有v-else -->
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+                name:'小小',
+                n: 0
+            }
+        })
+    </script>
+</body>
+</html>

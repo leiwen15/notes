@@ -1,11 +1,15 @@
 # linux 常用命令
-## 一、测试两台linux机器之间的网速
+## 一、测试两台机器之间的网速
+### windows 和 linux 之间都可以
 + 两台机器都安装 iperf3
 >+ eg. 10.28.172.27 和 10.28.172.24
 >+ 安装方式：yum install -y iperf3
+>+ windows 安装方式：https://iperf.fr/iperf-download.php，并直接在安装地址中调用
 + 其中一台机器启动 iperf
 >+ 10.28.172.27
 >+ iperf3 -s
++ 如果是 windows 机器
+>+ iperf3.exe -s
 + 另外一台机器执行
 >+ 10.28.172.24
 >+ iperf3 -c 10.28.172.27 -d -t 60
@@ -42,3 +46,12 @@
 >+ grep 251 malware.txt
 + 在文件中查找两个条件
 >+ grep 251 malware.txt | grep url
+## 七、压缩命令
+## 八、查看当前系统中进程状态
++ ps -aux
+>+ 查看当前系统中所有的进程信息
++ ps -ef | grep openvpn
+>+ 查看具体的某一进程
+## 九、openvpn 配置
++ 重启 openvpn
+>+ sudo openvpn --daemon --config /etc/openvpn/mobile.ovpn --log-append /var/log/openvpn.log

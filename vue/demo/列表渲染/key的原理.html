@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <button @click="add">添加一个 老刘</button>
+        <ul>
+            <!-- 遍历数组 -->
+            <!-- 需要给每一条数据都加上key -->
+            <!-- vue虽然不报错，但是建议写上去，在react中，如果不写会报错 -->
+            <!-- 要保证key中的数据是唯一的  -->
+            <li v-for="person in persons" :key="person.id">{{person.name}}-{{person.age}}</li>
+        </ul>
+        <h2>汽车</h2>
+        <ul>
+            <!-- 遍历对象 -->
+            <li v-for="(value, key) in car">{{key}}-{{value}}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+                persons:[
+                    {id:'001', name:'haha', age:'20'},
+                    {id:'002', name:'xiaoming', age:'22'},
+                    {id:'003', name:'mingming', age:'18'},
+
+                ],
+                car:{
+                    name:"xiaopeng",
+                    value:"30w"
+                }
+            },
+            methods:{
+                add(){
+                    const p = {id:"004", name:"老刘", age:40}
+                    this.persons.unshift(p)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

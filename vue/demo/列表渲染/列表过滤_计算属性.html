@@ -12,7 +12,7 @@
     <div id="root">
         <input type="text" placeholder="请输入名字" v-model="keyWord">
         <ul>
-            <li v-for="(p, index) of filPersons" :key="index">
+            <li v-for="(p, index) of filPersons" :key="p.id">
                 {{p.name}} - {{p.age}} - {{p.sex}}
             </li>
         </ul>

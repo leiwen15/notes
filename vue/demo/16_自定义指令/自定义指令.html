@@ -16,6 +16,8 @@
          <h2>当前的n值是：<span v-text="n"></span></h2>
          <h2>放大10倍的n值是：<span v-big="n"></span></h2>
          <button @click="n++">点我 n + 1</button>
+         <hr/>
+         <input type="text" v-fbind:value="n">
      </div>
 </body>
 <script type="text/javascript">
@@ -31,6 +33,10 @@
             // 2.指令所在的模板被重新解析时
             big(element, binding){
                 element.innerText = binding.value * 10
+            },
+            fbind(element, binding){
+                element.value = binding.value
+                element.focus()
             }
         }
     })

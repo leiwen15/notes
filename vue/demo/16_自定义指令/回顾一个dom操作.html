@@ -23,6 +23,24 @@
 
 <script type="text/javascript">
     Vue.config.productionTip = false
+    // 定义全局指令
+    Vue.directive(
+        'fbind',{
+             // 指令与元素成功绑定时（一开始）
+             bind(element, binding){
+                console.log('bind')
+            },
+            // 指令与元素被插入页面时
+            inserted(element, binding){
+                element.focus()
+            },
+            // 指令所在的模板被重新解析时
+            update(element, binding){
+                element.value = binding.value
+                element.focus()
+            }
+        }
+    )
     new Vue({
         el:'#root',
         data:{
@@ -32,9 +50,14 @@
             // big 函数什么时候会被调用？
             // 1.指令与元素成功绑定时
             // 2.指令所在的模板被重新解析时
-            big(element, binding){
+            big(element, binding)
+            {   
+                // 虽然没有使用箭头函数，this 指向的是window，不再是 vm
+                console.log(this)
                 element.innerText = binding.value * 10
             },
+            // 'big-number'(element, binding){},
+            // 'big-number':function(element, binding){},
             // 这种写法并不能 成功获取焦点
             // fbind(element, binding){
             //     element.value = binding.value

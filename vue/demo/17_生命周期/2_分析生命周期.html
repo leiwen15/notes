@@ -49,7 +49,6 @@
             // console.log(this)
             // debugger;
         },
-
         // 在mounted阶段
         // 页面中呈现的都是经过Vue编译的DOM
         // 对DOM的操作均有效（尽可能避免）
@@ -57,12 +56,35 @@
         // 开启定时器、发送网络请求、订阅消息、绑定自定义事件等初始化操作
         mounted(){
             console.log('mounted')
+            // console.log(this)
+            // debugger;
+        },
+        // 当数据发生改变时
+        // 在beforeUpdate阶段中
+        // 数据是新的，但页面是旧的，即：页面尚未和数据保持同步
+        beforeUpdate() {
+            console.log('beforeUpdate')
+            // console.log(this)
+        },
+        // 之后根据新数据，生成新的虚拟dom
+        // 随后与旧的虚拟dom进行比较，最终完成页面更新
+        // 也就是完成了Model到view的更新
+
+        // 在updated阶段
+        // 数据是新的，页面也是新的，即：页面与数据保持同步
+        updated() {
+            console.log('updated')
             console.log(this)
-            debugger;
-        }
-
+        },
+        // 销毁流程
+        // 调用vm.$destroy()时
+        // 在beforeDestroy中
+        // 此时，vm所有的:data、methods、指令等，都是处于可用状态
+        // 马上要执行销毁过程
+        // 此时：关闭定时器、取消订阅消息、解绑自定义事件等收尾工作
+        beforeDestroy() {
+            
+        },
     })
-
-
 </script>
 </html>

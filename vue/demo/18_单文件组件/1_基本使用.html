@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 3.使用组件 -->
+        <school></school>
+        <student></student>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // 1.创建组件
+    const school = Vue.extend({
+        template:`
+        <div>
+            <h2>{{schoolName}}</h2>
+            <h2>{{address}}</h2>
+        </div>
+        `,
+        // el:'#root'，组件定义时，一定不能写el配置项
+        data(){
+            return {
+                schoolName:'三中',
+                address:'松路'
+            }
+        }
+    })
+
+    const student = Vue.extend({
+        template:`
+        <div>
+            <h2>{{studentName}}</h2>
+            <h2>{{age}}</h2>
+        </div>
+        `,
+        data(){
+            return {
+                studentName:'小李',
+                age:18
+            }
+        }
+    })
+
+    // 2.注册组件
+    new Vue({
+        el:'#root',
+        components:{
+            school: school,
+            student: student
+            // 简写模式
+            // school
+        }
+    })
+
+</script>
+</html>

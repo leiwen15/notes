@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <school></school>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // 定义学校组件
+    // 实际上，school 是VueComponent 构造函数
+    const school = Vue.extend({
+        name:'school',
+        // 嵌套使用组件
+        template:`
+        <div>
+            <h2>{{schoolName}}</h2>
+        </div>
+        `,
+        data(){
+            return {
+                'schoolName': '三中'
+            }
+        }
+    })
+
+    console.log(school)
+    new Vue({
+        // template:`<app></app>`,
+        el:'#root',
+        components:{
+            school
+        }
+    })
+    </script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    function Demo(){
+        this.a = 1,
+        this.b = 2
+    }
+
+    const d = new Demo()
+
+    console.log(Demo.prototype) // 显式原型属性
+    console.log(d.__proto__) // 隐式原型属性，两者都指向原型对象
+    console.log(Demo.prototype === d.__proto__)
+
+    // 程序员通过显示原型属性操作原型对象，追加一个 x 属性，值为99
+    Demo.prototype.x = 99
+    console.log('@', d.__proto__.x)
+    console.log('#', d.x)
+    console.log(d)
+    
+
+    const school = Vue.extend({
+        name:'school',
+        // 嵌套使用组件
+        template:`
+        <div>
+            <h2>{{schoolName}}</h2>
+        </div>
+        `,
+        data(){
+            return {
+                'schoolName': '三中'
+            }
+        }
+    })
+
+    console.log(school)
+    new Vue({
+        // template:`<app></app>`,
+        el:'#root',
+        components:{
+            school
+        }
+    })
+    // VueComponent.prototype.__proto__ === Vue.prototype
+    // 指向的都是 Object
+    console.log(school.prototype.__proto__ === Vue.prototype)
+    </script>
+</html>

@@ -14,19 +14,28 @@
 </body>
 <script type="text/javascript">
     Vue.config.productionTip = false
-    const vm = new Vue({
+    new Vue({
         el:'#root',
         data:{
             opacity:1
         },
+        methods: {
+            change(){
+                setInterval(() => {
+                    this.opacity -= 0.01
+                    if(this.opacity <= 0){
+                        this.opacity = 1
+                    }
+                }, 16)
+            }
+        }
 
     })
-
-    setInterval(() => {
-        vm.opacity -= 0.01
-        if(vm.opacity <= 0){
-            vm.opacity = 1
-        }
-    }, 16)
+    // setInterval(() => {
+    //     vm.opacity -= 0.01
+    //     if(vm.opacity <= 0){
+    //         vm.opacity = 1
+    //     }
+    // }, 16)
 </script>
 </html>

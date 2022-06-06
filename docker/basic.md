@@ -2,7 +2,7 @@
 
 ## 打镜像 image
 ```shell
-docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "HTTPS_PROXY=http://10.21.142.20:8080/" --build-arg "NO_PROXY=localhost,127.0.0.1,.example.com" -t engine_32:0.1
+docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "HTTPS_PROXY=http://10.21.142.20:8080/" --build-arg "NO_PROXY=localhost,127.0.0.1,.example.com" -t engine_32:0.4
 ```
 
 ## docker 创建容器
@@ -12,16 +12,28 @@ docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "H
 + docker run -v /root/test_docker_file:/root/ engine_32:0.1
 #### 挂载多个文件夹
 + docker run -v /root/test_docker_file:/root/ -v /root/auto_test/pattern:/root/auto_test/pattern/ engine_32:0.1
++ ```shell
+  
+  ```
 ### docker 与宿主机共享网络
 #### 便可以与宿主机共享网络，可以在容器内访问公司的github.local
 + ```shell
   docker run -v /root/test_docker_file:/root/ \
   -v /root/auto_test/pattern:/root/auto_test/pattern/ \
-  -it --network=host engine_32:0.1
+  -it --network=host engine_32:0.4
   ```
 ## 让容器在后台运行
 + docker run -d engine_32
 ## 进入docker 容器查看
 + docker exec -it youthful_bassi /bin/bash
 + docker exec -it stupefied_cray /bin/bash
-+ docker exec -it dd61 /bin/bash
++ docker exec -it dd61 /bin/bash·
+  
+## 查看容器的内容()
++ docker cp 785d:/logs/temp ./
++ docker cp a335:/root/auto_test ./
+
+## docker的container的持久化
+### 容器的生命周期依赖于启动时的命令，只要该命令不结束，容器便不会退出
+### -d 可以让容器在后台运行
++ docker run centos /bin/bash -d -c "while true ; do sleep 1 ; done"

@@ -44,3 +44,16 @@ docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "H
 + docker run centos /bin/bash -d -c "while true ; do sleep 1 ; done"
 
 ## 容器可以利用 ssh login
+### 需求：通过 SSH 登录到容器中进行一些修改
+### 做法：将容器中的SSH端口映射到宿主机，并在容器中安装openssh服务
++ https://blog.csdn.net/qq_39626154/article/details/82856865
+#### 一、创建容器
++ PS: 当使用宿主机网络, --network=host时，自定义的端口将被忽略
++ ```shell
+  docker run -d -v /root/auto_test/pattern_source:/root/auto_test/pattern_source/ \
+  -v /root/auto_test/pattern:/root/auto_test/pattern/ \
+  -it --name test_pattern \
+  -p 2222:22 engine_32:0.4
+  ``` 
+#### 二、进入容器，安装 openssh 服务
++ docker exec -it test_pattern /bin/bash

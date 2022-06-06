@@ -13,9 +13,7 @@ ADD . /app
 RUN python3 -m venv $VIRTUAL_ENV \
     && pip install -U pip setuptools -i https://mirrors.aliyun.com/pypi/simple/ \
     && pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
-    && pip config set global.extra-index-url http://161.189.130.167:8080/simple/ \
-    && pip config set install.trusted-host 161.189.130.167 \
-    && mkdir /root/auto_test/pattern
+    && mkdir -p /root/auto_test/pattern
 # && scl enable devtoolset-8 bash \
 # && ./rebuildPython3.sh
 

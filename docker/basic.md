@@ -1,5 +1,7 @@
 # 容器
 
+## centos 安装docker(无坑版)
++ https://blog.csdn.net/qq_43674360/article/details/124674846
 ## 打镜像 image
 ```shell
 docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "HTTPS_PROXY=http://10.21.142.20:8080/" --build-arg "NO_PROXY=localhost,127.0.0.1,.example.com" -t engine_32:0.4
@@ -13,12 +15,15 @@ docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "H
 #### 挂载多个文件夹
 + docker run -v /root/test_docker_file:/root/ -v /root/auto_test/pattern:/root/auto_test/pattern/ engine_32:0.1
 + ```shell
-  
+  docker run -v /root/test_docker_file:/root/ \
+  -v /root/auto_test/pattern:/root/auto_test/pattern/ \
+  -it --network=host engine_32:0.4
   ```
 ### docker 与宿主机共享网络
+#### --network=host，即与宿主机共享网络
 #### 便可以与宿主机共享网络，可以在容器内访问公司的github.local
 + ```shell
-  docker run -v /root/test_docker_file:/root/ \
+  docker run -v /root/auto_test/pattern_source:/root/auto_test/pattern_source/ \
   -v /root/auto_test/pattern:/root/auto_test/pattern/ \
   -it --network=host engine_32:0.4
   ```
@@ -37,3 +42,5 @@ docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "H
 ### 容器的生命周期依赖于启动时的命令，只要该命令不结束，容器便不会退出
 ### -d 可以让容器在后台运行
 + docker run centos /bin/bash -d -c "while true ; do sleep 1 ; done"
+
+## 容器可以利用 ssh login

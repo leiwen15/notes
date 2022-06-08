@@ -55,3 +55,8 @@
 ## 九、openvpn 配置
 + 重启 openvpn
 >+ sudo openvpn --daemon --config /etc/openvpn/mobile.ovpn --log-append /var/log/openvpn.log
+## 十、查看 linux 版本
++ 查看 centos 版本
+>+ cat /etc/redhat-release
++ 查看 debian 版本
+>+ cat /etc/issue

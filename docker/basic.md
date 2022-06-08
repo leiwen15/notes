@@ -6,6 +6,9 @@
 ```shell
 docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "HTTPS_PROXY=http://10.21.142.20:8080/" --build-arg "NO_PROXY=localhost,127.0.0.1,.example.com" -t engine_32:0.4
 ```
+## 重启docker
++ systemctl daemon-reload
++ systemctl restart docker.service
 
 ## docker 创建容器
 
@@ -41,7 +44,13 @@ docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "H
 ## docker的container的持久化
 ### 容器的生命周期依赖于启动时的命令，只要该命令不结束，容器便不会退出
 ### -d 可以让容器在后台运行
-+ docker run centos /bin/bash -d -c "while true ; do sleep 1 ; done"
++ docker run -d centos /bin/bash -c "while true ; do sleep 1 ; done"
+
+## docker创建新镜像
+### 使用 docker commit 命令
++ 运行容器
++ 修改容器
++ 将容器保存为新的镜像
 
 ## 容器可以利用 ssh login
 ### 需求：通过 SSH 登录到容器中进行一些修改

@@ -60,3 +60,15 @@
 >+ cat /etc/redhat-release
 + 查看 debian 版本
 >+ cat /etc/issue
+## 十一、不同版本 linux 的常用软件
+### centos
++ 安装包
+>+ yum -y install openssh*
+### debian
++ 安装 openssh
+>+ apt-get install openssh-client
+>+ apt-get install openssh-server
++ 配置
+>+ 
+## 十二、Mysql 远程连接
++ mysql -h 10.xx.17x.xx -P 4000 -u hitip -p123456

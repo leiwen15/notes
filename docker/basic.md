@@ -45,6 +45,7 @@ docker build . --build-arg "HTTP_PROXY=http://10.21.142.20:8080/" --build-arg "H
 ### 容器的生命周期依赖于启动时的命令，只要该命令不结束，容器便不会退出
 ### -d 可以让容器在后台运行
 + docker run -d centos /bin/bash -c "while true ; do sleep 1 ; done"
++ docker run -d  -it --network=host centos /bin/bash -c "while true ; do sleep 1 ; done"
 
 ## docker创建新镜像
 ### 使用 docker commit 命令

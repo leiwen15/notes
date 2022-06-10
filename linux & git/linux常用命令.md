@@ -72,3 +72,10 @@
 >+ 
 ## 十二、Mysql 远程连接
 + mysql -h 10.xx.17x.xx -P 4000 -u hitip -p123456
+## 十三、yum 代理 以及换源
++ 代理
++ ```shell
+  vi /etc/yum.conf
+  proxy = https://ctx_dataxx:P%40ssw0rd@10.xx.172.xx:8888
+  ```
++ 其中，%40 为 @ 的转义字符

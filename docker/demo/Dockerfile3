@@ -1,0 +1,25 @@
+FROM centos
+FROM python:3.7
+LABEL version="3.2"
+LABEL desc="test engine3.2"
+
+WORKDIR /
+ENV VIRTUAL_ENV=/venv 
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# 把宿主机当前目录下的文件，放置在容器的/root文件夹下面
+ADD . /root/auto_test/maldium3.2_pattern/
+# COPY ./mald-python/rebuildPython3.sh .
+
+RUN python3 -m venv $VIRTUAL_ENV \
+    && pip install -U pip setuptools -i https://mirrors.aliyun.com/pypi/simple/ \
+    && pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
+    && mkdir -p /root/auto_test/pattern \
+    && mkdir -p /root/auto_test/pattern_source
+    # && sh /root/auto_test/maldium3.2_pattern/mald-python/rebuildPython3.sh
+
+
+# && scl enable devtoolset-8 bash \
+# && ./rebuildPython3.sh
+
+# ENTRYPOINT ["python3", "/root/auto_test/maldium3.2_pattern/mald-python/comp_test_all.py"]

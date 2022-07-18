@@ -1,0 +1,20 @@
+FROM python:3.7
+LABEL version="3.2"
+LABEL desc="test engine3.2"
+
+WORKDIR /
+ENV VIRTUAL_ENV=/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# 把宿主机当前目录下的文件，放置在容器的/app文件夹下面
+ADD . /app
+# COPY ./mald-python/rebuildPython3.sh .
+
+RUN python3 -m venv $VIRTUAL_ENV \
+    && pip install -U pip setuptools -i https://mirrors.aliyun.com/pypi/simple/ \
+    && pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
+    && mkdir -p /root/auto_test/pattern
+# && scl enable devtoolset-8 bash \
+# && ./rebuildPython3.sh
+
+ENTRYPOINT ["python3", "/app/test.py"]

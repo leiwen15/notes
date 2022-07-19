@@ -64,6 +64,7 @@
 ### centos
 + 安装包
 >+ yum -y install openssh*
+>+ yum install mysql
 ### debian
 + 安装 openssh
 >+ apt-get install openssh-client
@@ -74,8 +75,8 @@
 + mysql -h 10.xx.17x.xx -P 4000 -u hitip -p123456
 ## 十三、yum 代理 以及换源
 + 代理
-+ ```shell
-  vi /etc/yum.conf
-  proxy = https://ctx_dataxx:P%40ssw0rd@10.xx.172.xx:8888
-  ```
-+ 其中，%40 为 @ 的转义字符
+>+ 其中，%40 为 @ 的转义字符
+>+  vi /etc/yum.conf
+>+ proxy = https://ctx_dataxx:P%40ssw0rd@10.xx.172.xx:8888
++ 换源
+>+ vi /etc/yum.repos.d/CentOS-Base.repo

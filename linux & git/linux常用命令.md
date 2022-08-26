@@ -80,3 +80,7 @@
 >+ proxy = https://ctx_dataxx:P%40ssw0rd@10.xx.172.xx:8888
 + 换源
 >+ vi /etc/yum.repos.d/CentOS-Base.repo
+## 删除包含某个字符串的一行
++ sed -i -e '/030PR3J4MIGLLKDD/d' mm.txt
++ sed -i -e '/0302IW5LA03J03YO/d' mm.txt
++ sed -i -e '/pcbookcn.com/d' malware_ioc_info.txt
